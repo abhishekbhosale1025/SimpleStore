@@ -71,6 +71,7 @@ export const addQtyFunction=(id,addqty)=>(dispatch)=>{
     axios.patch(`http://localhost:5050/items/${id}`,addqty)
     .then((r)=>{
         //dispatch(soldItemSuccess(r.data))
+        
         dispatch(getItemList())
     })
     .catch((e)=>{
@@ -102,10 +103,12 @@ export const changeStatusFunction =(id,data)=>(dispatch)=>{
 }
 
 export const getRadioFunction =(value)=>(dispatch)=>{
-
-    axios.get(`http://localhost:5050/items/?qty_lte=${value}`)
+    //views_gte=10&views_lte=20
+    console.log("abbbb")
+    axios.get(`http://localhost:5050/items/?qty_gte=100&qty_lte=200`)
     .then((r)=>{
-        dispatch(getItemList(r.data))
+        console.log(r.data)
+        dispatch(getItemList())
     })
     .catch((e)=>{
         console.log(e)

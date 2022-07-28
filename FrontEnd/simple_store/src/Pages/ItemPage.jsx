@@ -40,10 +40,16 @@ const ItemPage = () => {
 
   const sellItem =()=>{
 
-    const sellDataQty = {
-      qty : (Number(data.qty)-Number(sellQty))
+    if(Number((data.qty)-Number(sellQty) >= 0)){
+
+      const sellDataQty = {
+        qty : (Number(data.qty)-Number(sellQty))
+      }
+      dispatch(sellQtyFunction(id,sellDataQty))
     }
-    dispatch(sellQtyFunction(id,sellDataQty))
+    else{
+      alert('Not Have Enough Stock...!!')
+    }
   }
 
   const addItem =()=>{

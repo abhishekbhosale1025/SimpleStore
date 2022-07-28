@@ -16,12 +16,14 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import FilterComponent from "../Components/FilterComponent";
-import { addItemToList, getItemList, getRadioFunction } from "../Redux/App/actions";
+import { addItemSuccess, addItemToList, getItemList, getRadioFunction } from "../Redux/App/actions";
 import ItemList from "./ItemList";
 
 const HomePage = () => {
 
+  const stock = useSelector((state) => state.app.itemData);
   
 
   const [name, setName] = useState("");
@@ -31,8 +33,8 @@ const HomePage = () => {
   const [category,setCategory] = useState("")
   const [debounce,setdebounce] = useState("")
   const [radio,setRadio] = useState('')
+  const [id,setId] = useState(0)
 
-  console.log(radio)
   const dispatch = useDispatch();
 
   useEffect(()=>{
@@ -40,15 +42,42 @@ const HomePage = () => {
   },[dispatch])
 
   useEffect(()=>{
-    if(!radio===""){
-      console.log(radio)
-      if(radio==="50")
-      {
-        dispatch(getRadioFunction(radio))
+    if(radio!==""){
+
+      if(radio==="50"){
+        const getAllParams = {
+          params: {
+            qty_lte : 50,
+          },
+        };
+        console.log("low")
+        dispatch(getItemList(getAllParams))
       }
-     
+      else if(radio==="200"){
+        const getAllParams = {
+          params: {
+            qty_lte : 200,
+            qty_gte : 51
+          },
+        };
+        console.log("mid")
+        dispatch(getItemList(getAllParams))
+      }
+      else if(radio==="2000"){
+        const getAllParams = {
+          params: {
+            qty_gte : 200,
+          },
+        };
+        console.log("high")
+        dispatch(getItemList(getAllParams))
+      }
+      else
+      {
+        dispatch(getItemList())
+      }
     }
-  },[])
+  },[radio,dispatch])
 
   useEffect(()=>{
     if(debounce!==""){
@@ -61,22 +90,36 @@ const HomePage = () => {
     }
   },[debounce,dispatch])
 
+  const navigate = useNavigate() ;
+
   const handleAdd = () => {
     //console.log(typeof(qty))
-    let itemData = {
-      name: name,
-      qty: qty,
-      unit: unit,
-      image : image,
-      category  :category
-    };
+    if(name!=="")
+    {
+      const filterName = stock.find((el)=>el.name === name)
+      filterName && setId(filterName)
 
-    dispatch(addItemToList(itemData));
-    setName("")
-    setQty(0)
-    setUnit("")
-    setCategory("")
-    setImage("")
+      if(filterName){
+        alert("Product already exists...!!")
+        navigate(`/item/${filterName.id}`)
+      } 
+      else{
+        let itemData = {
+          name: name,
+          qty: qty,
+          unit: unit,
+          image : image,
+          category  :category
+        };
+    
+        dispatch(addItemToList(itemData));
+        setName("")
+        setQty(0)
+        setUnit("")
+        setCategory("")
+        setImage("")
+      }
+    }
   };
 
   const handleChange = (qty) => setQty(qty)
@@ -97,11 +140,11 @@ const HomePage = () => {
             <Input
               width={300}
               mt={10}
-              ml={"390px"}
-              color="teal"
+              ml={"480px"}
+              color="black"
               onChange={(e)=>setdebounce(e.target.value)}
-              placeholder="search here..."
-              _placeholder={{ color: "inherit" }}
+              placeholder="search item here..."
+               _placeholder={{ color: "gray.800" }}
             />
           </Box>
           <Box w={"85%"} p={10} display={"flex"} m={'auto'} gap={2}>
@@ -109,8 +152,10 @@ const HomePage = () => {
               onChange={(e) => setName(e.target.value)}
               width={300}
               m={"auto"}
+              color="black"
               type={"text"}
               placeholder={"write name..."}
+              _placeholder={{ color: "gray.800" }}
             />
              <NumberInput size="md"  placeholder={"write quantity..."}  width={200}  onChange={handleChange} defaultValue={qty} min={1}>
                 <NumberInputField />
@@ -174,7 +219,7 @@ const HomePage = () => {
           </Box>
           <Box  w={'100%'} display={'flex'} justifyContent={'space-around'}>
             <Box mt={5} ml={5}>
-                <Text fontSize={'2xl'} textAlign={'center'}>YOUR ITEMS</Text>
+                <Text fontSize={'2xl'} fontWeight={'bold'} textAlign={'center'}>STORE ITEMS LIST</Text>
                 <SimpleGrid w={'100%'} columns={3} spacing={5}>
                     <ItemList />    
                 </SimpleGrid>
@@ -186,16 +231,16 @@ const HomePage = () => {
           </Text>
           <RadioGroup onClick={(e)=>setRadio(e.target.value)} mt={1} defaultValue="4">
             <Stack spacing={1} direction="column">
-              <Radio size={"lg"} colorScheme="white" value="all">
+              <Radio size={"lg"} colorScheme="white" value={"all"}>
                 All List
               </Radio>
-              <Radio size={"lg"} colorScheme="red" value="50">
+              <Radio size={"lg"} colorScheme="red" value={"50"}>
                 Low Stock List
               </Radio>
-              <Radio size={"lg"} colorScheme="yellow" value="201">
+              <Radio size={"lg"} colorScheme="yellow" value={"200"}>
                 Running Stock List
               </Radio>
-              <Radio size={"lg"} colorScheme="green" value="2000">
+              <Radio size={"lg"} colorScheme="green" value={"2000"}>
                 Safe Stock List
               </Radio>
             </Stack>
