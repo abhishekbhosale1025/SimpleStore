@@ -42,9 +42,9 @@ export const addItemToList = (payload) => (dispatch)=>{
 
 export const getItemList =(payload) => (dispatch)=>{
     dispatch(addItemRequest())
-    axios.get('http://localhost:5050/items')
+    axios.get('http://localhost:5050/items',payload)
     .then((r)=>{
-        console.log(r.data)
+       // console.log(r.data)
         dispatch(addItemSuccess(r.data))
     })
     .catch((e)=>{
@@ -89,3 +89,27 @@ export const removeItemFunction =(id)=>(dispatch)=>{
         console.log(e)
     })
 }
+
+export const changeStatusFunction =(id,data)=>(dispatch)=>{
+
+    axios.patch(`http://localhost:5050/items/${id}`,data)
+    .then((r)=>{
+        dispatch(getItemList())
+    })
+    .catch((e)=>{
+        console.log(e)
+    })
+}
+
+export const getRadioFunction =(value)=>(dispatch)=>{
+
+    axios.get(`http://localhost:5050/items/?qty_lte=${value}`)
+    .then((r)=>{
+        dispatch(getItemList(r.data))
+    })
+    .catch((e)=>{
+        console.log(e)
+    })
+}
+
+
