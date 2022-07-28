@@ -58,7 +58,7 @@ const HomePage = () => {
         width="100%"
         bgGradient="linear(to-l, #7928CA, #FF0080)"
       >
-        <Box width={"75%"} border={"1px solid black"}>
+        <Box width={"75%"}>
           <Text fontSize="5xl" textAlign={"center"}>
             SimpleStore
           </Text>
@@ -80,7 +80,7 @@ const HomePage = () => {
               type={"text"}
               placeholder={"write name..."}
             />
-             <NumberInput size="md"  placeholder={"write quantity..."}  width={220}  onChange={handleChange} defaultValue={qty} min={10}>
+             <NumberInput size="md"  placeholder={"write quantity..."}  width={220}  onChange={handleChange} defaultValue={qty} min={1}>
                 <NumberInputField />
                 <NumberInputStepper>
                 <NumberIncrementStepper />

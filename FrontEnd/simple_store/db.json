@@ -2,38 +2,37 @@
   "items": [
     {
       "name": "Sugar",
-      "qty": 100,
+      "qty": 55,
       "unit": "KG",
+      "status": "green",
       "id": 1
     },
     {
       "name": "TEA",
-      "qty": 80,
+      "qty": 50,
       "unit": "PCS",
+      "status": "green",
       "id": 3
     },
     {
-      "name": "PAM OIL",
-      "qty": "150",
-      "unit": "LTR",
-      "id": 4
-    },
-    {
       "name": "SOAP",
-      "qty": "1999",
+      "qty": 1060,
       "unit": "PCS",
+      "status": "red",
       "id": 5
     },
     {
       "name": "Parle G",
       "qty": "2000",
       "unit": "PCS",
+      "status": "green",
       "id": 6
     },
     {
       "name": "KRACK-JACK",
       "qty": "1100",
       "unit": "PCS",
+      "status": "yellow",
       "id": 7
     }
   ]

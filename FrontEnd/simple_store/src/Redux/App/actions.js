@@ -51,5 +51,41 @@ export const getItemList =(payload) => (dispatch)=>{
         console.log(e) ;
         dispatch(addItemFailure())
     })
+}
 
+export const sellQtyFunction=(id,sellqty)=>(dispatch)=>{
+    dispatch(soldItemRequest())
+    axios.patch(`http://localhost:5050/items/${id}`,sellqty)
+    .then((r)=>{
+        //dispatch(soldItemSuccess(r.data))
+        dispatch(getItemList())
+    })
+    .catch((e)=>{
+        console.log(e)
+        dispatch(soldItemFailure())
+    })
+}
+
+export const addQtyFunction=(id,addqty)=>(dispatch)=>{
+    dispatch(addItemRequest())
+    axios.patch(`http://localhost:5050/items/${id}`,addqty)
+    .then((r)=>{
+        //dispatch(soldItemSuccess(r.data))
+        dispatch(getItemList())
+    })
+    .catch((e)=>{
+        console.log(e)
+        dispatch(addItemFailure())
+    })
+}
+
+export const removeItemFunction =(id)=>(dispatch)=>{
+
+    axios.delete(`http://localhost:5050/items/${id}`)
+    .then((r)=>{
+        dispatch(getItemList())
+    })
+    .catch((e)=>{
+        console.log(e)
+    })
 }

@@ -1,11 +1,11 @@
 
 import './App.css';
-import HomePage from './Pages/HomePage';
+import Mainroutes from './Routes/Mainroutes';
 
 function App() {
   return (
     <>
-       <HomePage />
+      <Mainroutes />
     </>
    
     
