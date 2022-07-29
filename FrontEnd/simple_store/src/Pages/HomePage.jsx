@@ -18,6 +18,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import FilterComponent from "../Components/FilterComponent";
+import HomeNav from "../Components/HomeNav";
+import Navbar from "../Components/Navbar";
+import SubNavbar from "../Components/SubNavbar";
 import { addItemSuccess, addItemToList, getItemList, getRadioFunction } from "../Redux/App/actions";
 import ItemList from "./ItemList";
 
@@ -133,9 +136,10 @@ const HomePage = () => {
         bgGradient="linear(to-l, #7928CA, #FF0080)"
       >
         <Box width={"100%"}>
-          <Text fontSize="5xl" textAlign={"center"}>
+          {/* <Text fontSize="5xl" textAlign={"center"}>
             SimpleStore
-          </Text>
+          </Text> */}
+          <HomeNav/>
           <Box>
             <Input
               width={300}
