@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost:27017/items", {
+const DB = "mongodb+srv://vicky:vickydata@cluster0.kxodm.mongodb.net/storedata?retryWrites=true&w=majority";
+
+mongoose.connect(DB, {
     // useCreateIndex: true,
     // useNewUrlParser: true,
     // useUnifiedTopology:true

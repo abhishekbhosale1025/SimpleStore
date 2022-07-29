@@ -9,14 +9,14 @@ import HomeNav from '../Components/HomeNav'
 const ItemPage = () => {
 
   const {id} = useParams() ;
-  console.log(typeof(id))
+  console.log(id)
 
   const dispatch = useDispatch();
 
   // const navigate = useNavigate();
   
   const stock = useSelector((state)=>state.app.itemData)
-    console.log(stock) ;
+  //console.log(stock) ;
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [data,setData] = useState({})
@@ -42,13 +42,13 @@ const ItemPage = () => {
   },[stock,id])
 
   const sellItem =()=>{
-
-    if(Number((data.qty)-Number(sellQty) >= 0)){
+    const calculation = (Number((data.qty)-Number(sellQty)))
+    if(calculation >= 0){
 
       const sellDataQty = {
-        qty : (Number(data.qty)-Number(sellQty))
+        qty : calculation
       }
-      dispatch(sellQtyFunction(id,sellDataQty))
+      dispatch(sellQtyFunction(data._id,sellDataQty))
     }
     else{
       alert('Not Have Enough Stock...!!')
@@ -61,11 +61,11 @@ const ItemPage = () => {
     const addDataQty = {
       qty : (Number(data.qty) + Number(addQty))
     }
-    dispatch(addQtyFunction(id,addDataQty))
+    dispatch(addQtyFunction(data._id,addDataQty))
   }
 
   const removeItem =()=>{
-      dispatch(removeItemFunction(id))
+      dispatch(removeItemFunction(data._id))
   }
   
   console.log(data)
@@ -106,7 +106,7 @@ const ItemPage = () => {
           </ModalBody>
 
           <ModalFooter>
-           <Link to={'/'}><Button colorScheme='blue' onClick={removeItem} mr={3}>
+           <Link to={'/home'}><Button colorScheme='blue' onClick={removeItem} mr={3}>
               Yes
             </Button></Link> 
             <Button onClick={onClose}>Cancel</Button>

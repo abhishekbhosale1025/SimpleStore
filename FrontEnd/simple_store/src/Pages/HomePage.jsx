@@ -21,14 +21,14 @@ import FilterComponent from "../Components/FilterComponent";
 import HomeNav from "../Components/HomeNav";
 import Navbar from "../Components/Navbar";
 import SubNavbar from "../Components/SubNavbar";
-import { addItemSuccess, addItemToList, getItemList, getRadioFunction } from "../Redux/App/actions";
+import { addItemSuccess, addItemToList, getItemList } from "../Redux/App/actions";
 import ItemList from "./ItemList";
+ import {nanoid} from 'nanoid'
 
 const HomePage = () => {
 
   const stock = useSelector((state) => state.app.itemData);
   
-
   const [name, setName] = useState("");
   const [qty, setQty] = useState(0);
   const [unit, setUnit] = useState("");
@@ -37,6 +37,7 @@ const HomePage = () => {
   const [debounce,setdebounce] = useState("")
   const [radio,setRadio] = useState('')
   const [id,setId] = useState(0)
+  const [data,setData] = useState()
 
   const dispatch = useDispatch();
 
@@ -46,15 +47,13 @@ const HomePage = () => {
 
   useEffect(()=>{
     if(radio!==""){
-
+      console.log(radio)
       if(radio==="50"){
-        const getAllParams = {
-          params: {
-            qty_lte : 50,
-          },
-        };
-        console.log("low")
-        dispatch(getItemList(getAllParams))
+        console.log(stock)
+        const filterItem = stock?.map((el)=> Number(el.qty) < Number(radio))
+        filterItem && setData(filterItem) ;
+        console.log(filterItem)
+        dispatch(addItemSuccess(data))
       }
       else if(radio==="200"){
         const getAllParams = {
@@ -80,7 +79,7 @@ const HomePage = () => {
         dispatch(getItemList())
       }
     }
-  },[radio,dispatch])
+  },[radio])
 
   useEffect(()=>{
     if(debounce!==""){
@@ -111,10 +110,11 @@ const HomePage = () => {
           name: name,
           qty: qty,
           unit: unit,
+          category  :category,
           image : image,
-          category  :category
+          id : Date.now()
         };
-    
+    console.log(itemData)
         dispatch(addItemToList(itemData));
         setName("")
         setQty(0)
@@ -152,15 +152,35 @@ const HomePage = () => {
             />
           </Box>
           <Box w={"85%"} p={10} display={"flex"} m={'auto'} gap={2}>
-            <Input
-              onChange={(e) => setName(e.target.value)}
-              width={300}
-              m={"auto"}
-              color="black"
-              type={"text"}
-              placeholder={"write name..."}
-              _placeholder={{ color: "gray.800" }}
-            />
+          <Select w={500} variant='outline' onChange={(e)=>setName(e.target.value)} placeholder='Select Product'>
+                {/* BISCUITS */}
+                <option value={"PARLE-G"}>PARLE-G</option>
+                <option value={'GoodDay'}>GOOD DAY</option>
+                <option value={'Monocco'}>MONOCCO</option>
+                <option value={'Marie Gold'}>Marie Gold</option>
+                <option value={'Hide N Seek'}>Hide n Seek</option>
+                {/* Dairy Products */}
+                <option value={'Milk'}>Milk</option>
+                <option value={'Butter Milk'}>Butter Milk</option>
+                <option value={'Ghee'}>Ghee</option>
+                {/* Edible Oil */}
+                <option value={'Sunflower Oil'}>Sunflower Oil</option>
+                <option value={'Soyabean'}>Soyabean</option>
+                <option value={'Saffola'}>Saffola</option>
+                {/* Bath & Handwash */}
+                <option value={'Soap'}>Soap</option>
+                <option value={'Dettol Liquid'}>Dettol Liquid</option>
+                <option value={'Handwash'}>Handwash</option>
+                {/* Skin Care */}
+                <option value={'Face Wash'}>Face Wash</option>
+                <option value={'Face Cream'}>Face Cream</option>
+                <option value={'Face Pack'}>Face Pack</option>
+                {/* Instant Foods */}
+                <option value={'Maggie'}>Maggie</option>
+                <option value={'Poha'}>Poha</option>
+                <option value={'Dal Khichdi'}>Dal Khichdi</option>
+               
+            </Select>   
              <NumberInput size="md"  placeholder={"write quantity..."}  width={200}  onChange={handleChange} defaultValue={qty} min={1}>
                 <NumberInputField />
                 <NumberInputStepper>

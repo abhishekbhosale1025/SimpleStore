@@ -1,20 +1,24 @@
+
 const express = require("express");
 
 require("./db/conn");
 
 const ItemsList=require("./models/items")
-
+const cors = require("cors")
 const app = express();
 
 const port = process.env.PORT || 5000;
 
 app.use(express.json());  
+app.use(express.urlencoded({extended:true}))
+app.use(cors())
 
 //Post Method
 app.post("/items", async (req, res) => {
     try {
         const addingItems = new ItemsList(req.body);
-        console.log(req.body);
+		//console.log(addingItems)
+       // console.log(req.body);
         const list = await addingItems.save();
         res.status(201).send(list)
     } catch (e) {
@@ -24,8 +28,13 @@ app.post("/items", async (req, res) => {
 
 //GET Method
 app.get("/items", async (req, res) => {
+	//console.log(req)
 	try {
-		const getItems = await ItemsList.find({});
+		const category = req.query
+		const radio = req
+		console.log(radio)
+		const getItems = await ItemsList.find(radio || category || {});
+		//console.log("ab")
 		res.send(getItems);
 	} catch (e) {
 		res.status(400).send(e);
@@ -35,6 +44,7 @@ app.get("/items", async (req, res) => {
 
 //GET Method
 app.get("/items/:id", async (req, res) => {
+	//console.log("ab")
     try {
         const _id = req.params.id;
 		const getItem = await ItemsList.findById(_id);
@@ -44,22 +54,42 @@ app.get("/items/:id", async (req, res) => {
 	}
 });
 
-//PATCH Method
-app.patch("/items/:id", async (req, res) => {
+////
+
+// app.get("/items", async (req, res) => {
+// 	//console.log("ab")
+//     try {
+//         const category = req.params.category;
+// 		console.log(category)
+// 		const getItem = await ItemsList.filter({category : category });
+// 		res.send(getItem);
+// 	} catch (e) {
+// 		res.status(400).send(e);
+// 	}
+// });
+
+
+//PUT Method
+app.put("/items/:id", async (req, res)=> {
+	console.log("ab")
 	try {
 		const _id = req.params.id;
+		console.log(_id,"qwe")
 		const getItem = await ItemsList.findByIdAndUpdate(_id,req.body,{new:true});
+		console.log("patch item at backend",getItem)
 		res.send(getItem);
 	} catch (e) {
 		res.status(500).send(e);
+		console.log("not patched",e)
 	}
 });
 
 //DELETE Method
-app.delete("/items/:id", async (req, res) => {
+app.delete("/items/:id", async (req, res)=> {
 	try {
 		const _id = req.params.id;
 		const getItem = await ItemsList.findByIdAndDelete(_id);
+		//console.log("delete item at backend",getItem)
 		res.send(getItem);
 	} catch (e) {
 		res.status(500).send(e);

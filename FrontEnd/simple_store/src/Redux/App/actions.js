@@ -25,10 +25,10 @@ export const soldItemFailure = ()=>({
     type : SOLD_ITEM_FAILURE
 })
 
-
 export const addItemToList = (payload) => (dispatch)=>{
+    console.log(payload,"ab")
     dispatch(addItemRequest())
-    axios.post('http://localhost:5050/items',payload)
+    axios.post('http://localhost:5000/items',payload)
     .then((r)=>{
         console.log(r.data)
         dispatch(addItemSuccess(r.data))
@@ -41,23 +41,24 @@ export const addItemToList = (payload) => (dispatch)=>{
 }
 
 export const getItemList =(payload) => (dispatch)=>{
+    
     dispatch(addItemRequest())
-    axios.get('http://localhost:5050/items',payload)
+    axios.get('http://localhost:5000/items',payload)
     .then((r)=>{
-       // console.log(r.data)
+       //console.log("homepage get data is ",r)
         dispatch(addItemSuccess(r.data))
     })
     .catch((e)=>{
-        console.log(e) ;
+       // console.log(e) ;
         dispatch(addItemFailure())
     })
 }
 
 export const sellQtyFunction=(id,sellqty)=>(dispatch)=>{
     dispatch(soldItemRequest())
-    axios.patch(`http://localhost:5050/items/${id}`,sellqty)
+    axios.put(`http://localhost:5000/items/${id}`,sellqty)
     .then((r)=>{
-        //dispatch(soldItemSuccess(r.data))
+       // dispatch(soldItemSuccess(r.data))
         dispatch(getItemList())
     })
     .catch((e)=>{
@@ -67,22 +68,23 @@ export const sellQtyFunction=(id,sellqty)=>(dispatch)=>{
 }
 
 export const addQtyFunction=(id,addqty)=>(dispatch)=>{
+   
     dispatch(addItemRequest())
-    axios.patch(`http://localhost:5050/items/${id}`,addqty)
+    axios.put(`http://localhost:5000/items/${id}`,addqty)
     .then((r)=>{
-        //dispatch(soldItemSuccess(r.data))
-        
+        console.log(addqty,"bbbbbbbbbbbbb")
+    //    dispatch(soldItemSuccess(r.data))
         dispatch(getItemList())
     })
     .catch((e)=>{
         console.log(e)
-        dispatch(addItemFailure())
+        //dispatch(addItemFailure())
     })
 }
 
 export const removeItemFunction =(id)=>(dispatch)=>{
 
-    axios.delete(`http://localhost:5050/items/${id}`)
+    axios.delete(`http://localhost:5000/items/${id}`)
     .then((r)=>{
         dispatch(getItemList())
     })
@@ -91,28 +93,28 @@ export const removeItemFunction =(id)=>(dispatch)=>{
     })
 }
 
-export const changeStatusFunction =(id,data)=>(dispatch)=>{
+// export const changeStatusFunction =(id,data)=>(dispatch)=>{
 
-    axios.patch(`http://localhost:5050/items/${id}`,data)
-    .then((r)=>{
-        dispatch(getItemList())
-    })
-    .catch((e)=>{
-        console.log(e)
-    })
-}
+//     axios.patch(`http://localhost:5000/items/${id}`,data)
+//     .then((r)=>{
+//         dispatch(getItemList())
+//     })
+//     .catch((e)=>{
+//         console.log(e)
+//     })
+// }
 
-export const getRadioFunction =(value)=>(dispatch)=>{
-    //views_gte=10&views_lte=20
-    console.log("abbbb")
-    axios.get(`http://localhost:5050/items/?qty_gte=100&qty_lte=200`)
-    .then((r)=>{
-        console.log(r.data)
-        dispatch(getItemList())
-    })
-    .catch((e)=>{
-        console.log(e)
-    })
-}
+// export const getRadioFunction =(value)=>(dispatch)=>{
+//     //views_gte=10&views_lte=20
+//     console.log("abbbb")
+//     axios.get(`http://localhost:5000/items/?qty_gte=100&qty_lte=200`)
+//     .then((r)=>{
+//         console.log(r.data)
+//         dispatch(getItemList())
+//     })
+//     .catch((e)=>{
+//         console.log(e)
+//     })
+// }
 
 
