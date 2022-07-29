@@ -31,9 +31,8 @@ app.get("/items", async (req, res) => {
 	//console.log(req)
 	try {
 		const category = req.query
-		const radio = req
-		console.log(radio)
-		const getItems = await ItemsList.find(radio || category || {});
+		 console.log(category)
+		const getItems = await ItemsList.find(category || {});
 		//console.log("ab")
 		res.send(getItems);
 	} catch (e) {

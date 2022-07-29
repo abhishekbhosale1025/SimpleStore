@@ -19,8 +19,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import FilterComponent from "../Components/FilterComponent";
 import HomeNav from "../Components/HomeNav";
-import Navbar from "../Components/Navbar";
-import SubNavbar from "../Components/SubNavbar";
 import { addItemSuccess, addItemToList, getItemList } from "../Redux/App/actions";
 import ItemList from "./ItemList";
  import {nanoid} from 'nanoid'
