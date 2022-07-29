@@ -1,12 +1,12 @@
 {
-  "name": "store",
+  "name": "BackEnd",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"npm src/app.js",
-    "dev":"nodemon src/app.js"
+    "start": "npm src/app.js",
+    "dev": "nodemon /src/app.js"
   },
   "keywords": [],
   "author": "",

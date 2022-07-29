@@ -10,7 +10,7 @@
     },
     {
       "name": "Parle G",
-      "qty": 72,
+      "qty": 262,
       "unit": "PCS",
       "category": "Biscuits & Cookies",
       "image": "https://www.bigbasket.com/media/uploads/p/xxl/102102-2_6-parle-gluco-biscuits-parle-g.jpg",
@@ -159,6 +159,14 @@
       "image": "https://m.media-amazon.com/images/I/51qWWuEHKvL._SX522_.jpg",
       "category": "Instant Foods",
       "id": 20
+    },
+    {
+      "name": "Pohe",
+      "qty": "100",
+      "unit": "KG",
+      "image": "",
+      "category": "Instant Foods",
+      "id": 21
     }
   ]
 }

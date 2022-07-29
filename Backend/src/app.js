@@ -1,8 +1,8 @@
 const express = require("express");
 
-require("../src/db/conn");
+require("./db/conn");
 
-const ItemsList=require("../src/models/items")
+const ItemsList=require("./models/items")
 
 const app = express();
 
@@ -21,7 +21,6 @@ app.post("/items", async (req, res) => {
         res.status(400).send(e)
     }
 })
-
 
 //GET Method
 app.get("/items", async (req, res) => {
