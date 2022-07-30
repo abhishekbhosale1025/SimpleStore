@@ -15,7 +15,6 @@ const Navbar = () => {
   return (
     <Box display="flex" justifyContent="space-between" alignItems="center" p={2} pl={8} pr={8} bg={"lightgreen"} >
         <img width={"280px"} style={{margin:"20px",cursor:"pointer"}} src={require("../Utils/images/logo.png")}  alt=""/>
-				{/* <Box fontSize={"4xl"} fontFamily={" sans-serif"}>Simple Store</Box> */}
 				<Box width={200} display="flex" justifyContent="space-around">
 					<Button onClick={handleSignIn} colorScheme="red">Sign-In</Button>
 					<Button onClick={handleSignUp} colorScheme="red">Sign-Up</Button>

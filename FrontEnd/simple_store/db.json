@@ -2,7 +2,7 @@
   "items": [
     {
       "name": "Good Day",
-      "qty": 89,
+      "qty": 209,
       "unit": "PCS",
       "category": "Biscuits & Cookies",
       "image": "https://www.bigbasket.com/media/uploads/p/l/100012341-2_7-britannia-good-day-butter-cookies.jpg",
@@ -10,7 +10,7 @@
     },
     {
       "name": "Parle G",
-      "qty": 262,
+      "qty": 102,
       "unit": "PCS",
       "category": "Biscuits & Cookies",
       "image": "https://www.bigbasket.com/media/uploads/p/xxl/102102-2_6-parle-gluco-biscuits-parle-g.jpg",
@@ -18,7 +18,7 @@
     },
     {
       "name": "Monaco",
-      "qty": 0,
+      "qty": 42,
       "unit": "PCS",
       "category": "Biscuits & Cookies",
       "image": "https://www.bigbasket.com/media/uploads/p/xxl/100114531-2_11-parle-monaco.jpg",
@@ -137,36 +137,12 @@
       "id": 17
     },
     {
-      "name": "Maggie",
-      "qty": 160,
-      "unit": "PCS",
-      "image": "https://static.connect2india.com/c2icd/product_resources/images/maggie-noodles.jpg",
-      "category": "Instant Foods",
-      "id": 18
-    },
-    {
       "name": "Poha ",
       "qty": 48,
       "unit": "PCS",
       "image": "https://www.aashirvaad.com/img/instantmeal/poha/1.jpg",
       "category": "Instant Foods",
       "id": 19
-    },
-    {
-      "name": "Dal Khichdi",
-      "qty": 50,
-      "unit": "PCS",
-      "image": "https://m.media-amazon.com/images/I/51qWWuEHKvL._SX522_.jpg",
-      "category": "Instant Foods",
-      "id": 20
-    },
-    {
-      "name": "Pohe",
-      "qty": "100",
-      "unit": "KG",
-      "image": "",
-      "category": "Instant Foods",
-      "id": 21
     }
   ]
 }

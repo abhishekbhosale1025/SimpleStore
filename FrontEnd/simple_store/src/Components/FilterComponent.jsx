@@ -8,10 +8,8 @@ const FilterComponent = () => {
   const [searchParams,setSearchParams] = useSearchParams() ;
 
   const urlCategory = searchParams.getAll('category')
-//   const urlSort = searchParams.get('sortBy')
  
   const [category,setCategory] = useState(urlCategory || []) ;
-//   const [sortBy,setSortBy] = useState(urlSort || '')
 
   const dispatch = useDispatch() ; 
 
@@ -20,17 +18,6 @@ const FilterComponent = () => {
       setSearchParams({category})
     }
   },[category,dispatch,setSearchParams])
-
-
-//   useEffect(()=>{
-//     if(sortBy){
-//       const params = {
-//         category : searchParams.getAll('category'),
-//       }
-//       setSearchPrams(params)
-//     }
-//   },[searchParams,dispatch,setSearchPrams,sortBy])
-  
   
   const handleCheckbox =(e)=>{
 
@@ -46,9 +33,7 @@ const FilterComponent = () => {
       newCategory.push(option) ;
     }
     setCategory(newCategory)
-   
   }
-
   return (
     <>
        <Text pl={5} pb={3} pt={6} fontWeight={'bold'} fontSize={"large"}>CATEGORY FILTER</Text>
