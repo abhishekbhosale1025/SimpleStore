@@ -64,7 +64,7 @@ const ItemPage = () => {
       const sellDataQty = {
         qty: calculation,
       };
-      dispatch(sellQtyFunction(data._id, sellDataQty));
+      dispatch(sellQtyFunction(id, sellDataQty));
     } 
     else 
     {
@@ -74,14 +74,16 @@ const ItemPage = () => {
   };
 
   const addItem = () => {
+   
     const addDataQty = {
       qty: Number(data.qty) + Number(addQty),
-    };
-    dispatch(addQtyFunction(data._id, addDataQty));
+    }; 
+    console.log(id)
+    dispatch(addQtyFunction(id, addDataQty));
   };
 
   const removeItem = () => {
-    dispatch(removeItemFunction(data._id));
+    dispatch(removeItemFunction(id));
   };
   //console.log(data);
 
@@ -197,6 +199,9 @@ const ItemPage = () => {
             </>
           )}
         </HStack>
+        <Link to={"/home"}>
+                <Button mt={10} ml={"92px"}>GO BACK</Button>
+        </Link>
       </Box>
     </Box>
   );

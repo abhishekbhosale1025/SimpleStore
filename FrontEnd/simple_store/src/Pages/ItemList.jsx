@@ -45,7 +45,7 @@ const ItemList = () => {
                     <Box m={1} h={5} bg={"white"} w={5} rounded={"50%"}></Box>
                   )}
 
-                  {Number(el.qty) < 200 && Number(el.qty) > 50 ? (
+                  {  Number(el.qty) <= 200 && Number(el.qty) > 50  ? (
                     <Box m={1} h={5} bg={"yellow"} w={5} rounded={"50%"}></Box>
                   ) : (
                     <Box m={1} h={5} bg={"white"} w={5} rounded={"50%"}></Box>
@@ -92,7 +92,7 @@ const ItemList = () => {
                   <Box m={1} h={5} bg={"white"} w={5} rounded={"50%"}></Box>
                 )}
 
-                {Number(el.qty) > 200 ? (
+                {Number(el.qty) >= 200 ? (
                   <Box m={1} h={5} bg={"green"} w={5} rounded={"50%"}></Box>
                 ) : (
                   <Box m={1} h={5} bg={"white"} w={5} rounded={"50%"}></Box>

@@ -36,7 +36,7 @@ export const addItemToList = (payload) => (dispatch) => {
   console.log(payload, "ab");
   dispatch(addItemRequest());
   axios
-    .post("http://localhost:5000/items", payload)
+    .post("https://simple-store-data.herokuapp.com/api/items", payload)
     .then((r) => {
       console.log(r.data);
       //dispatch(addItemSuccess(r.data));
@@ -51,9 +51,9 @@ export const addItemToList = (payload) => (dispatch) => {
 export const getItemList = (payload) => (dispatch) => {
   dispatch(addItemRequest());
   axios
-    .get("http://localhost:5000/items", payload)
+    .get("https://simple-store-data.herokuapp.com/api/items", payload)
     .then((r) => {
-      //console.log("homepage get data is ",r)
+      console.log("homepage get data is ",r.data)
       dispatch(addItemSuccess(r.data));
     })
     .catch((e) => {
@@ -64,8 +64,9 @@ export const getItemList = (payload) => (dispatch) => {
 
 export const sellQtyFunction = (id, sellqty) => (dispatch) => {
   dispatch(soldItemRequest());
+  console.log(id,sellqty)
   axios
-    .put(`http://localhost:5000/items/${id}`, sellqty)
+    .patch(`https://simple-store-data.herokuapp.com/api/items/${id}`,sellqty)
     .then((r) => {
       // dispatch(soldItemSuccess(r.data))
       dispatch(getItemList());
@@ -79,9 +80,9 @@ export const sellQtyFunction = (id, sellqty) => (dispatch) => {
 export const addQtyFunction = (id, addqty) => (dispatch) => {
   dispatch(addItemRequest());
   axios
-    .put(`http://localhost:5000/items/${id}`, addqty)
+    .patch(`https://simple-store-data.herokuapp.com/api/items/${id}`,addqty)
     .then((r) => {
-      console.log(addqty, "bbbbbbbbbbbbb");
+     // console.log(addqty, "bbbbbbbbbbbbb");
       //    dispatch(soldItemSuccess(r.data))
       dispatch(getItemList());
     })
@@ -93,8 +94,9 @@ export const addQtyFunction = (id, addqty) => (dispatch) => {
 
 export const removeItemFunction = (id) => (dispatch) => {
   axios
-    .delete(`http://localhost:5000/items/${id}`)
+    .delete(`https://simple-store-data.herokuapp.com/api/items/${id}`)
     .then((r) => {
+      console.log("sunday")
       dispatch(getItemList());
     })
     .catch((e) => {
@@ -104,7 +106,7 @@ export const removeItemFunction = (id) => (dispatch) => {
 
 // export const changeStatusFunction =(id,data)=>(dispatch)=>{
 
-//     axios.patch(`http://localhost:5000/items/${id}`,data)
+//     axios.patch(`https://simple-store-data.herokuapp.com/api/items/${id}`,data)
 //     .then((r)=>{
 //         dispatch(getItemList())
 //     })
@@ -116,7 +118,7 @@ export const removeItemFunction = (id) => (dispatch) => {
 // export const getRadioFunction =(value)=>(dispatch)=>{
 //     //views_gte=10&views_lte=20
 //     console.log("abbbb")
-//     axios.get(`http://localhost:5000/items/?qty_gte=100&qty_lte=200`)
+//     axios.get(`https://simple-store-data.herokuapp.com/api/items/?qty_gte=100&qty_lte=200`)
 //     .then((r)=>{
 //         console.log(r.data)
 //         dispatch(getItemList())

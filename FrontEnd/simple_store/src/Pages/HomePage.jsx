@@ -25,7 +25,7 @@ import {
   getItemList,
 } from "../Redux/App/actions";
 import ItemList from "./ItemList";
-import { nanoid } from "nanoid";
+// import { nanoid } from "nanoid";
 
 const HomePage = () => {
 
@@ -48,26 +48,31 @@ const HomePage = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (radio !== "") {
+    if (radio !== "") 
+    {
       console.log(radio);
-      if (radio === "50") 
+      if(radio === "50") 
       {
-        console.log(stock);
-        const filterItem = stock?.map((el) => Number(el.qty) < Number(radio));
-        filterItem && setData(filterItem);
-        console.log(filterItem);
-        dispatch(addItemSuccess(data));
-      } 
-      else if (radio === "200") {
         const getAllParams = {
           params: {
-            qty_lte: 200,
+            qty_lte: 50,
+          },
+        };
+        console.log("low");
+        dispatch(getItemList(getAllParams));
+      } 
+      else if (radio === "200")
+      {
+        const getAllParams = {
+          params: {
+            qty_lte: 199,
             qty_gte: 51,
           },
         };
         console.log("mid");
         dispatch(getItemList(getAllParams));
-      } else if (radio === "2000") {
+      } 
+      else if (radio === "2000") {
         const getAllParams = {
           params: {
             qty_gte: 200,
@@ -75,7 +80,9 @@ const HomePage = () => {
         };
         console.log("high");
         dispatch(getItemList(getAllParams));
-      } else {
+      } 
+      else 
+      {
         dispatch(getItemList());
       }
     }
@@ -90,6 +97,7 @@ const HomePage = () => {
       };
       dispatch(getItemList(getAllParams));
     }
+    
   }, [debounce, dispatch]);
 
   const navigate = useNavigate();
@@ -108,7 +116,7 @@ const HomePage = () => {
       {
         let itemData = {
           name: name,
-          qty: qty,
+          qty: Number(qty),
           unit: unit,
           category: category,
           image: image,
