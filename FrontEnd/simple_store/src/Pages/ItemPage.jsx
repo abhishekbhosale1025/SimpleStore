@@ -34,6 +34,8 @@ const ItemPage = () => {
 
   // const navigate = useNavigate();
   const stock = useSelector((state) => state.app.itemData);
+  const loading = useSelector((state) => state.app.loading)
+  const error = useSelector((state) => state.app.error)
   //console.log(stock) ;
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -41,7 +43,6 @@ const ItemPage = () => {
   const [sellFlag, setSellFlag] = useState(false);
   const [addFlag, setAddFlag] = useState(false);
   const [removeFlag] = useState(false);
-
   const [sellQty, setSellQty] = useState("");
   const [addQty, setAddQty] = useState("");
 
@@ -88,16 +89,23 @@ const ItemPage = () => {
   //console.log(data);
 
   return (
+    <>
     <Box
       fontFamily={"monospace"}
       h={800}
       bgGradient="linear(to-l, #7928CA, #FF0080)"
     >
       <HomeNav />
+     
       <Text fontSize={"5xl"} textAlign={"center"}>
         {" "}
         Name :{data.name}
       </Text>
+
+     
+    {loading ? <Image ml={520} src="https://i.gifer.com/origin/34/34338d26023e5515f6cc8969aa027bca_w200.gif"/>
+      
+    :   
       <Box display={"flex"} justifyContent={"center"}>
         <Image
           width={250}
@@ -108,7 +116,8 @@ const ItemPage = () => {
           }
         />
       </Box>
-
+        }
+        
       <Box display={"flex"} w={"22%"} m={"auto"}>
         <Text fontSize={"2xl"} textAlign={"center"}>
           {" "}
@@ -202,8 +211,11 @@ const ItemPage = () => {
         <Link to={"/home"}>
                 <Button mt={10} ml={"92px"}>GO BACK</Button>
         </Link>
+      
       </Box>
+
     </Box>
+    </>
   );
 };
 

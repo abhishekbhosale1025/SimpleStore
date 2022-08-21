@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Image,
   Input,
   NumberDecrementStepper,
   NumberIncrementStepper,
@@ -30,6 +31,8 @@ import ItemList from "./ItemList";
 const HomePage = () => {
 
   const stock = useSelector((state) => state.app.itemData);
+  const loading = useSelector((state) => state.app.loading)
+  const error = useSelector((state) => state.app.error)
 
   const [name, setName] = useState("");
   const [qty, setQty] = useState(0);
@@ -136,7 +139,10 @@ const HomePage = () => {
 
   return (
     <>
-      <Box
+    
+    {/* {loading && <Image ml={200} src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/6d391369321565.5b7d0d570e829.gif"/>} */}
+    { error && <Image ml={200} src="https://media3.giphy.com/avatars/404academy/kGwR3uDrUKPI.gif" alt=""/>}
+     : <Box
         display={"flex"}
         height="auto"
         width="100%"

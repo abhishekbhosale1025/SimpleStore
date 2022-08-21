@@ -15,8 +15,8 @@ const LandingPage = () => {
             fontWeight={"700"}
             w={600}
             mt={"30px"}
-            ml={"100px"}
-            textAlign={"center"}
+            ml={"140px"}
+            textAlign={"left"}
           >
             Are You Tired of Managing Your Inventory/Resources?
           </Box>
@@ -25,8 +25,8 @@ const LandingPage = () => {
             fontWeight={"500"}
             w={600}
             mt={"40px"}
-            ml={"100px"}
-            textAlign={"center"}
+            ml={"140px"}
+            textAlign={"left"}
           >
             Here We Brings The Solution For Your Resource Management
           </Box>
@@ -86,7 +86,7 @@ const LandingPage = () => {
             Get an Alert When Stocks Goes Below Minimum Requirement
           </Box>
         </Box>
-        <Box ml={"50px"} mt={"30px"}>
+        <Box mr={"40px"} mt={"30px"}>
           <Image
             h={400}
             src="https://media.istockphoto.com/photos/3d-render-man-cartoon-character-with-growing-chart-green-arrow-goes-picture-id1279138405?b=1&k=20&m=1279138405&s=170667a&w=0&h=NFuIV8X3NumGrYeqfiV1ipA7iDnPg0VhU5qXOK8tu0U="
@@ -97,8 +97,8 @@ const LandingPage = () => {
       <Box
         display="flex"
         w={"600px"}
-        ml={"90px"}
-        mt="10px"
+        ml={"140px"}
+        mt="-20px"
         fontSize="20px"
         fontWeight={"600"}
         alignItems="center"

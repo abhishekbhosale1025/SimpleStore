@@ -6,6 +6,8 @@ import { getItemList } from "../Redux/App/actions";
 
 const ItemList = () => {
   const stock = useSelector((state) => state.app.itemData);
+  const loading = useSelector((state) => state.app.loading)
+  const error = useSelector((state) => state.app.error)
   //console.log(stock);
 
   const [searchParams] = useSearchParams();
@@ -27,7 +29,9 @@ const ItemList = () => {
 
   return (
     <>
-      {stock?.map((el) => (
+    {loading && <Image ml={420} mt={100} src="https://i.gifer.com/origin/34/34338d26023e5515f6cc8969aa027bca_w200.gif"/>}
+    {error && <Image ml={200} src="https://media3.giphy.com/avatars/404academy/kGwR3uDrUKPI.gif" alt=""/>} 
+     {stock?.map((el) => (
         <Link key={el.id} to={`/item/${el.id}`}>
           {el.qty === 0 ? (
             <Box rounded={10} bg={"gray.500"} p={5} mt={5} w={250}>
@@ -120,6 +124,7 @@ const ItemList = () => {
           )}
         </Link>
       ))}
+              
     </>
   );
 };

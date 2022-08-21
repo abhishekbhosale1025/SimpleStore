@@ -10,7 +10,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const HomeNav = () => {
   const navigate = useNavigate();
@@ -27,12 +27,13 @@ const HomeNav = () => {
       pr={8}
       bg={"transperent"}
     >
-      <img
+      <NavLink to={'/home'}><img
         width={"280px"}
         style={{ margin: "20px" }}
         src={require("../Utils/images/logo.png")}
         alt={""}
       />
+      </NavLink>
       <Box width={200} display="flex" justifyContent="space-around">
         <Menu>
           <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
