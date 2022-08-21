@@ -9,16 +9,8 @@
       "id": 1
     },
     {
-      "name": "Parle G",
-      "qty": 102,
-      "unit": "PCS",
-      "category": "Biscuits & Cookies",
-      "image": "https://www.bigbasket.com/media/uploads/p/xxl/102102-2_6-parle-gluco-biscuits-parle-g.jpg",
-      "id": 2
-    },
-    {
       "name": "Monaco",
-      "qty": 42,
+      "qty": 0,
       "unit": "PCS",
       "category": "Biscuits & Cookies",
       "image": "https://www.bigbasket.com/media/uploads/p/xxl/100114531-2_11-parle-monaco.jpg",
@@ -26,7 +18,7 @@
     },
     {
       "name": "Hide N Seek",
-      "qty": 250,
+      "qty": 150,
       "unit": "PCS",
       "image": "https://m.media-amazon.com/images/I/71cw2JLKmvL._SL1200_.jpg",
       "category": "Biscuits & Cookies",
@@ -143,6 +135,14 @@
       "image": "https://www.aashirvaad.com/img/instantmeal/poha/1.jpg",
       "category": "Instant Foods",
       "id": 19
+    },
+    {
+      "name": "Maaggie",
+      "qty": 115,
+      "unit": "PCS",
+      "image": "https://static.connect2india.com/c2icd/product_resources/images/maggie-noodles.jpg",
+      "category": "Instant Foods",
+      "id": 20
     }
   ]
 }

@@ -65,7 +65,9 @@ const ItemPage = () => {
         qty: calculation,
       };
       dispatch(sellQtyFunction(data._id, sellDataQty));
-    } else {
+    } 
+    else 
+    {
       alert("Not Have Enough Stock...!!");
       // navigate(`/item/${data.id}`)
     }
@@ -194,7 +196,6 @@ const ItemPage = () => {
               </Link>
             </>
           )}
-          {/* {removeFlag && <></>} */}
         </HStack>
       </Box>
     </Box>

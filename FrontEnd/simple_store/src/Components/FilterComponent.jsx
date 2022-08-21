@@ -14,7 +14,8 @@ const FilterComponent = () => {
   const dispatch = useDispatch() ; 
 
   useEffect(()=>{
-    if(category){
+    if(category)
+    {
       setSearchParams({category})
     }
   },[category,dispatch,setSearchParams])
@@ -24,10 +25,14 @@ const FilterComponent = () => {
     let option = e.target.value ;
 
     let newCategory = [...category]
-
+    console.log("before")
+    console.log(newCategory)
     if(category.includes(option))
     {
       newCategory.splice(newCategory.indexOf(option),1) 
+      console.log("after")
+      console.log(newCategory)
+      
     }
     else{
       newCategory.push(option) ;

@@ -28,6 +28,7 @@ import ItemList from "./ItemList";
 import { nanoid } from "nanoid";
 
 const HomePage = () => {
+
   const stock = useSelector((state) => state.app.itemData);
 
   const [name, setName] = useState("");
@@ -49,13 +50,15 @@ const HomePage = () => {
   useEffect(() => {
     if (radio !== "") {
       console.log(radio);
-      if (radio === "50") {
+      if (radio === "50") 
+      {
         console.log(stock);
         const filterItem = stock?.map((el) => Number(el.qty) < Number(radio));
         filterItem && setData(filterItem);
         console.log(filterItem);
         dispatch(addItemSuccess(data));
-      } else if (radio === "200") {
+      } 
+      else if (radio === "200") {
         const getAllParams = {
           params: {
             qty_lte: 200,
@@ -97,10 +100,12 @@ const HomePage = () => {
       const filterName = stock.find((el) => el.name === name);
       filterName && setId(filterName);
 
-      if (filterName) {
+      if(filterName) {
         alert("Product already exists...!!");
         navigate(`/item/${filterName.id}`);
-      } else {
+      } 
+      else 
+      {
         let itemData = {
           name: name,
           qty: qty,

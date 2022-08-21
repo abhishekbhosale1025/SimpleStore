@@ -39,7 +39,7 @@ export const addItemToList = (payload) => (dispatch) => {
     .post("http://localhost:5000/items", payload)
     .then((r) => {
       console.log(r.data);
-      dispatch(addItemSuccess(r.data));
+      //dispatch(addItemSuccess(r.data));
       dispatch(getItemList());
     })
     .catch((e) => {
